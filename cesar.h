@@ -1,29 +1,6 @@
 #include<iostream>
 #include<string>
-
-int module(int value,int modulo)
-{
-	int multiplo=modulo;
-	bool positivo=true;
-
-		if(value<0){value*=-1;positivo=false;}	////// volvemos positivo
-
-		while(multiplo<value){
-			multiplo+=modulo;
-		}
-
-		if(value==multiplo)
-			return 0;
-		if(positivo){
-			multiplo-=modulo;
-			cout<<"modulo retorna "<<value-multiplo<<endl;
-			return value-multiplo;
-		}
-
-		cout<<"modulo retorna "<<multiplo-value<<endl;
-		return multiplo-value;
-
-}
+#include"funciones.h"
 
 class Cesar
 {
