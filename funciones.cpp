@@ -81,3 +81,19 @@ string ballas_desencriptar(string mensaje,int key)
   }
   return mensajeDecifrado;
 }
+
+ long cifrado_rsa(long e,long n)
+ {
+   long m=572; ////////////////7 implementar la funcion rand
+   long elevado1=m;
+   long elevado2=1;
+   long resultado=1;
+
+   while(e!=0){
+     elevado1=elevado2=modulo((elevado1*elevado2),n);
+     if(modulo(e,2)==1)
+      resultado=modulo((resultado*elevado1),n);
+      e/=2;
+   }
+   return resultado;
+ }
