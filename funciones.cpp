@@ -1,8 +1,10 @@
 #include<iostream>
 #include<stdlib.h>
-#include<NTL,ZZ.h>
+#include<NTL/ZZ.h>
 #include"funciones.h"
+#include<fstream>
 using namespace std;
+using namespace NTL;
 
 long a,b,d,x,y;
 
@@ -12,6 +14,12 @@ int euclides(int a,int b)
     return a;
   return euclides(b,modulo(a,b));
 }
+ZZ euclides_ZZ(ZZ a,ZZ b)
+{
+  if(b==0)
+    return a;
+  return euclides_ZZ(b,modulo_ZZ(a,b));
+}
 int modulo(int value,int modulo)
 {
 	int cociente=value/modulo;
@@ -20,6 +28,15 @@ int modulo(int value,int modulo)
 		return value-cociente*modulo;
 	return modulo-(value*-1+cociente*modulo);
 }
+ZZ modulo_ZZ(ZZ value,ZZ modulo)
+{
+	ZZ cociente=value/modulo;
+
+	if(value>=0)
+		return value-cociente*modulo;
+	return modulo-(value*-1+cociente*modulo);
+}
+
 
 void euclides_extendido(long a,long b,long &d,long &x,long &y)
 {
@@ -32,6 +49,23 @@ void euclides_extendido(long a,long b,long &d,long &x,long &y)
   }
   else{
     euclides_extendido(b,modulo(a,b),d,x,y);
+    x1= x;
+    y1=y;
+    x=y1;
+    y=x1-(a/b)*y1;
+  }
+}
+void euclides_extendido_ZZ(ZZ a,ZZ b,ZZ &d,ZZ &x,ZZ &y)
+{
+  ZZ x1,y1;
+
+  if(b==0){
+    d=a;
+    x=1;
+    y=0;
+  }
+  else{
+    euclides_extendido_ZZ(b,modulo_ZZ(a,b),d,x,y);
     x1= x;
     y1=y;
     x=y1;
@@ -93,19 +127,81 @@ long divisores(long number)
   return contador;
 }
 
-bool is_primo(long number)
- long cifrado_rsa(long e,long n)
+ bool is_primo(ZZ number)
  {
-   long m=572; ////////////////7 implementar la funcion rand
-   long elevado1=m;
-   long elevado2=1;
-   long resultado=1;
+   ZZ i,raizCuadrada;
+   raizCuadrada=SqrRoot(number);
+   for ( i=2;i<raizCuadrada+1;i++){
+     
+     if(modulo_ZZ(number,i)==0)
+       return false;
+   }
+   if(number==0)
+     return false;
+   return true;
+ }
 
+ZZ exponenciacion_modular(ZZ e,ZZ n,ZZ m)
+ {
+   ZZ elevado1,elevado2,resultado,dos;
+   dos=2;
+   elevado1=m;
+   elevado2=1;
+   resultado=1;
+   
    while(e!=0){
-     elevado1=elevado2=modulo((elevado1*elevado2),n);
-     if(modulo(e,2)==1)
-      resultado=modulo((resultado*elevado1),n);
+     elevado1=elevado2=modulo_ZZ((elevado1*elevado2),n);
+     if(modulo_ZZ(e,dos)==1)
+      resultado=modulo_ZZ((resultado*elevado1),n);
       e/=2;
    }
    return resultado;
  }
+
+void generar_txt(ZZ *z)
+{
+  ofstream texto("cifradoRSA.txt");
+  texto<<"\nP es: "<<z[0];
+  texto<<"\nBits de P: "<<NumBits(z[0]);
+  texto<<"\nQ es: "<<z[1];
+  texto<<"\nBits de Q: "<<NumBits(z[1]);
+  texto<<"\nN es: "<<z[2];
+  texto<<"\nBits de N: "<<NumBits(z[2]);
+  texto<<"\nfiN es: "<<z[3];
+  texto<<"\nBits de fiN: "<<NumBits(z[3]);
+  texto<<"\nE es: "<<z[4];
+  texto<<"\nBits de E: "<<NumBits(z[4]);
+  texto<<"\nla clave privada es: "<<z[5];
+  texto<<"\nBits de la clave privada: "<<NumBits(z[5]);
+  texto.close();
+}
+int ZZ_to_int(ZZ number)
+{////////// un prerequisito es que number sea de 4 bytes o menos
+  unsigned int sumador,crece;
+  ZZ conejo,creciente,i;
+  sumador=0;
+  creciente=1;
+  conejo=1;
+  crece=1;
+  
+  for(i=1;i<NumBits(number)+1;i++){
+    creciente=conejo & number;
+    if(and_binari(creciente)){
+      sumador+=crece;
+    }
+    else creciente=conejo;
+    creciente<<=1;
+    conejo=conejo<<1;
+    crece<<=1;
+  } 
+  
+  return sumador;
+}
+bool and_binari(ZZ n)
+{
+  ZZ cero;
+  cero=0;
+  if(n==cero)
+    return false;
+  return true;
+}

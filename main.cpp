@@ -1,11 +1,12 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
+
 
 using namespace std;
-#include"funciones.h"
-//#include"cesar.h"
-#include"afin.h"
-
+#include "funciones.h"
+#include "cesar.h"
+#include "afin.h"
+#include "rsa.h"
 
 
 
@@ -30,9 +31,11 @@ int main(int argc,char ** argv)
   Afin receptor3(44,33);
   cout<<receptor3.descifrar("nOxiSYzic8H8YUcRvQDDiv8vR8gH8R8giRYzxSUtiFRHWDUSY8gzRQvQHWWrR8HeivR i6iSRv8ixvR8gHc8giRnQ.WYFiHcRHWDUSY8gzuRHcFRYcR8giRSizHYcYcDR.HvivR8giRcQzkiSRU Rv8ixvRSizHYcR8givHzi7RdgiRSiHFiSR6gUR6YvgivR8URiOxiSYzic8R6Y8gR8giviRHWDUSY8gzvRzHrR.UcvYFiSRQvYcD8giR UWWU6YcDREH8WHkRSUQ8YcivuR6gY.gRUQ8xQ8R8giRcQzkiSRU Rv8ixvR8HeicRHvR6iWWRHvR8giDSiH8iv8R.UzzUcRFYtYvUS7R_cRkU8gRSUQ8YcivR8giR YSv8RWYcivR8HeiR8giRHkvUWQ8iRtHWQivRU RHRXMV,RnKIMXRfV_ACnRdZdZ2MwZ")<<endl;
   cout<<"\n\n\n";
-  */
+  
   Afin receptor4(atoi(argv[1]),atoi(argv[2]));
   cout<<receptor4.descifrar(argv[3])<<endl;
-
+  */
+  RSA receptor;
+  
 
 }

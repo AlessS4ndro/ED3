@@ -8,7 +8,7 @@ class Cesar
 public:
 	string alfabeto;
 
-	Cesar(int key){this->key=module(key,27);alfabeto="abcdefghijklmnñopqrstuvwxyz ";}
+	Cesar(int key){this->key=modulo(key,27);alfabeto="abcdefghijklmnñopqrstuvwxyz ";}
 	string cifrar(string);
 	string descifrar(string);
 
