@@ -1,4 +1,6 @@
 #include<iostream>
+#include<stdlib.h>
+#include<NTL,ZZ.h>
 #include"funciones.h"
 using namespace std;
 
@@ -81,7 +83,17 @@ string ballas_desencriptar(string mensaje,int key)
   }
   return mensajeDecifrado;
 }
+long divisores(long number)
+{
+  int contador=0;
+  for(int i=1;i<number/2;i++){
+    if(modulo(number,i)==0)
+      contador++;
+  }
+  return contador;
+}
 
+bool is_primo(long number)
  long cifrado_rsa(long e,long n)
  {
    long m=572; ////////////////7 implementar la funcion rand

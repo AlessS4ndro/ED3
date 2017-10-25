@@ -36,6 +36,8 @@ string Afin::cifrar(string mensaje)
     x=modulo(x,size);
     mensajeNuevo+=alfabeto[x];
   }
+  cout<<"key_a es: "<<key_a<<endl;
+  cout<<"key_b es: "<<key_b<<endl;
   return mensajeNuevo;
 }
 
