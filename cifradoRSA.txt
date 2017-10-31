@@ -1,13 +1,13 @@
 
-P es: 181
+P es: 137
 Bits de P: 8
-Q es: 239
+Q es: 149
 Bits de Q: 8
-N es: 43259
-Bits de N: 16
-fiN es: 42840
-Bits de fiN: 16
-E es: 14251
-Bits de E: 14
-la clave privada es: 6716
-Bits de la clave privada: 13
+N es: 20413
+Bits de N: 15
+fiN es: 20128
+Bits de fiN: 15
+E es: 327
+Bits de E: 9
+la clave privada es: 20072
+Bits de la clave privada: 15

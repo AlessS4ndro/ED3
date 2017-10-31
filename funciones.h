@@ -17,3 +17,5 @@ void euclides_extendido_ZZ(ZZ,ZZ,ZZ &,ZZ &,ZZ&);
 void generar_txt(ZZ *);
 int ZZ_to_int(ZZ);
 bool and_binari(ZZ);
+ZZ number_digits(ZZ);
+string int_to_string(ZZ);

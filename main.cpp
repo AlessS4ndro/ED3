@@ -35,7 +35,6 @@ int main(int argc,char ** argv)
   Afin receptor4(atoi(argv[1]),atoi(argv[2]));
   cout<<receptor4.descifrar(argv[3])<<endl;
   */
-  RSA receptor;
+  //RSA receptor;
   
-
 }

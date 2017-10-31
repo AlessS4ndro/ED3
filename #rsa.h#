@@ -62,10 +62,10 @@ string RSA::cifrar(string tp)
     pos=tp.find(tp[i]);  // almacenamos la posicion del caracter
     if(number_digits(pos)!=digitosAlfabeto){
       mensajecifrado+='0'; // completamos el mensaje con ceros
-      mensajecifrado+=int_to_string(pos);
+      mensajecifrado+=int_to_string(pos);// agregamos a la palabra 
     }
     else{
-      mensajecifrado+=int_to_string(pos);
+      mensajecifrado+=int_to_string(pos);//agregamos a la palabra
     }
   }
   
