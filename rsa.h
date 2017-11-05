@@ -11,31 +11,28 @@ class RSA
   ZZ private_key;
   ZZ n;
   ZZ e;
+  int numeroBits;
+  string divide_bloque(string,int);
+  string complete_bloque(string , int);
+  string generate_keys(ZZ &,ZZ &,ZZ &,int &);
 public:
-  RSA();
+  RSA(int );
   RSA(ZZ n,ZZ e){this->n=n;this->e=e;alfabeto="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";}
   string cifrar(string);
   string decifrar(string);
 };
 
-RSA::RSA()
+RSA::RSA(int nbits)
 {
   alfabeto="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
   ZZ p,q,fiN,d,x,y;
   ZZ c[6];
 
-  do{
-    p=RandomLen_ZZ(8);cout<<p<<endl;
-    q=RandomLen_ZZ(8);cout<<q<<endl;
-  }while(!is_primo(p) || !is_primo(q));
+  generate_keys(p,q,e,nbits);
 
   n=p*q;
   fiN=(p-1)*(q-1);
 
-  do{
-    e=RandomLen_ZZ(16);  /// escogemos un numero e
-    e=modulo_ZZ(e,fiN);   //// q sea coprimo con fiN
-  }while(euclides_ZZ(fiN,e)!=1);
 
   euclides_extendido_ZZ(fiN,e,d,x,y); /////// hallamos la inversa de fiN
   if(x<0){
@@ -48,9 +45,9 @@ RSA::RSA()
 }
 
 string RSA::cifrar(string tp)
-{/*
+{
   ofstream texto("cifradoRSA.txt");
-  string mensajecifrado="";
+  string mensajecifrado;
   ZZ m,size,digitosAlfabeto,pos;
   int t;
   size=alfabeto.length();
@@ -76,11 +73,19 @@ string RSA::cifrar(string tp)
   texto<<mensajecifrado;
   texto.close();
   return mensajecifrado;
+ 
+}
 
-  //ZZ m;
-  //m=alfabeto.find(tp);
-  //cout<<"m es: "<<m;
-//  cout<<exponenciacion_modular(m,e,n);
-*/
+void generate_keys(ZZ p,ZZ q,ZZ e,int nbits)
+{
+  do{
+    p=RandomLen_ZZ(nbits/2);cout<<p<<endl;
+    q=RandomLen_ZZ(nbits/2);cout<<q<<endl;
+  }while(!is_primo(p) || !is_primo(q)); 
+
+  do{
+    e=RandomLen_ZZ(nbits);  /// escogemos un numero e menor que fiN
+    e=modulo_ZZ(e,(p-1)*(q-1));   ////  y q sea coprimo con fiN
+  }while(euclides_ZZ((p-1)*(q-1),e)!=1);
 
 }

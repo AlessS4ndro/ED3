@@ -14,7 +14,6 @@ using namespace NTL;
 int main(int argc,char ** argv)
 {
   /*
-
   Afin emisor1;
   string message=emisor1.cifrar(argv[1]);
   cout<<message<<endl;
