@@ -132,7 +132,7 @@ long divisores(long number)
    ZZ i,raizCuadrada;
    raizCuadrada=SqrRoot(number);
    for ( i=2;i<raizCuadrada+1;i++){
-     
+
      if(modulo_ZZ(number,i)==0)
        return false;
    }
@@ -140,15 +140,29 @@ long divisores(long number)
      return false;
    return true;
  }
+ /*
+ bool son_primo(ZZ * number)
+ {
+   ZZ i,raizCuadrada;
+   raizCuadrada=SqrRoot(number);
+   for( i=2;i<raizCuadrada+1;i++){
 
+     if(modulo_ZZ(number,i)==0)
+       return false;
+   }
+   if(number==0)
+     return false;
+   return true;
+*/
 ZZ exponenciacion_modular(ZZ e,ZZ n,ZZ m)
+
  {
    ZZ elevado1,elevado2,resultado,dos;
    dos=2;
    elevado1=m;
    elevado2=1;
    resultado=1;
-   
+
    while(e!=0){
      elevado1=elevado2=modulo_ZZ((elevado1*elevado2),n);
      if(modulo_ZZ(e,dos)==1)
@@ -183,7 +197,7 @@ int ZZ_to_int(ZZ number)
   creciente=1;
   conejo=1;
   crece=1;
-  
+
   for(i=1;i<NumBits(number)+1;i++){
     creciente=conejo & number;
     if(and_binari(creciente)){
@@ -193,8 +207,8 @@ int ZZ_to_int(ZZ number)
     creciente<<=1;
     conejo=conejo<<1;
     crece<<=1;
-  } 
-  
+  }
+
   return sumador;
 }
 bool and_binari(ZZ n)

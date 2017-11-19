@@ -33,10 +33,16 @@ int main(int argc,char ** argv)
   Afin receptor4(atoi(argv[1]),atoi(argv[2]));
   cout<<receptor4.descifrar(argv[3])<<endl;
   */
-  string palabra="a";
+  string textoPlano="a";
+  string mensajeCifrado;
+  string mensajeDecifrado;
   ZZ e,n;
   e=201123333;n=41234132;
   RSA emisor(n,e);
-  emisor.cifrar(palabra);
-
+  RSA receptor(1024);
+  /*mensajeCifrado=emisor.cifrar(textoPlano);
+  mensajeDecifrado=receptor.decifrar(mensajeCifrado);
+  cout<<"mensaje cifrado es: ";//<<mensajeCifrado<<endl;
+  cout<<"mensaje decifrado es:";//<<mensajeDecifrado<<endl;
+*/
 }
